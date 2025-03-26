@@ -1,0 +1,4 @@
+baseURL = "https://ztoliver.github.io/blog/"
+languageCode = "en-us"
+title = "My Blog"
+theme = "ananke"
