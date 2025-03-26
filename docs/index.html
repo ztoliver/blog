@@ -46,8 +46,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="My Blog">
-  <meta itemprop="datePublished" content="2025-03-26T13:55:40-05:00">
-  <meta itemprop="dateModified" content="2025-03-26T13:55:40-05:00">
+  <meta itemprop="datePublished" content="2025-03-26T14:21:35-05:00">
+  <meta itemprop="dateModified" content="2025-03-26T14:21:35-05:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="My Blog">
 
@@ -105,6 +105,77 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/blog/posts/cloudflare-tunnel-home-assistant/" class="color-inherit dim link">
+            External access for Home Assistant using Cloudflare Tunnels
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <h1 id="-set-up-external-access-for-home-assistant-using-the-cloudflare-tunnel-add-on">🌐 Set Up External Access for Home Assistant Using the Cloudflare Tunnel Add-on</h1>
+<p>This guide walks you through exposing your Home Assistant instance securely over the internet using <strong>Cloudflare Tunnel</strong> and the <strong>Cloudflared add-on</strong> with a <strong>token-based config</strong>.</p>
+<hr>
+<h2 id="-requirements">🧱 Requirements</h2>
+<ul>
+<li>Home Assistant OS (e.g. on Raspberry Pi) running on port 8123.</li>
+<li>Domain name (e.g. <code>your-custom-domain.com</code>)</li>
+<li>Cloudflare account managing the domain</li>
+<li>Cloudflared Home Assistant add-on installed</li>
+</ul>
+<hr>
+<h2 id="-step-1-set-up-domain-in-cloudflare">🔐 Step 1: Set Up Domain in Cloudflare</h2>
+<ol>
+<li>Log into <a href="https://dash.cloudflare.com">https://dash.cloudflare.com</a></li>
+<li>Add your domain if not already added (e.g. <code>your-custom-domain.com</code>)</li>
+<li>Follow prompts to update your domain’s <strong>nameservers</strong> to use Cloudflare</li>
+<li>Once domain is active, go to the <strong>Zero Trust Dashboard</strong> &gt; <strong>Access</strong> &gt; <strong>Tunnels</strong></li>
+<li>Click <strong>Create a Tunnel</strong>
+<ul>
+<li>Name: <code>homeassistant</code></li>
+<li>Choose <strong>Create Tunnel Token</strong></li>
+</ul>
+</li>
+<li>Select <strong>Public Hostname</strong>
+<ul>
+<li>Hostname: <code>ha.your-custom-domain.com</code></li>
+<li>Service: <code>http://&lt;your-local-device-ip-address&gt;:8123</code></li>
+</ul>
+</li>
+<li>After creating the tunnel, you’ll get a <strong>tunnel token</strong>.</li>
+</ol>
+<hr>
+<h2 id="-step-2-install-and-configure-the-cloudflared-add-on">🚀 Step 2: Install and Configure the Cloudflared Add-on</h2>
+<ol>
+<li>Go to <strong>Settings &gt; Add-ons &gt; Add-on Store</strong></li>
+<li>Search for <strong>Cloudflared</strong> and install the official version</li>
+<li>Click <strong>Configuration</strong>, and enter the following:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">external_hostname</span>: <span style="color:#ae81ff">ha.your-custom-domain.com.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">additional_hosts</span>: []
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tunnel_name</span>: <span style="color:#ae81ff">homeassistant</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tunnel_token</span>: &gt;-<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &lt;your-token&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">nginx_proxy_manager</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><ol start="4">
+<li>Click <strong>Save</strong>, then <strong>Start</strong> the add-on</li>
+</ol>
+<blockquote>
+<p>🧠 <em>Note: Do not manually manage a config file or credentials if you&rsquo;re using this token method—it’s handled for you.</em></p>
+        </div>
+        <a href="/blog/posts/cloudflare-tunnel-home-assistant/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             

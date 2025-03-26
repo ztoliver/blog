@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>External access for Home Assistant using Cloudflare Tunnels | My Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="🌐 Set Up External Access for Home Assistant Using the Cloudflare Tunnel Add-on
+This guide walks you through exposing your Home Assistant instance securely over the internet using Cloudflare Tunnel and the Cloudflared add-on with a token-based config.
+
+🧱 Requirements
+
+Home Assistant OS (e.g. on Raspberry Pi) running on port 8123.
+Domain name (e.g. your-custom-domain.com)
+Cloudflare account managing the domain
+Cloudflared Home Assistant add-on installed
+
+
+🔐 Step 1: Set Up Domain in Cloudflare
+
+Log into https://dash.cloudflare.com
+Add your domain if not already added (e.g. your-custom-domain.com)
+Follow prompts to update your domain’s nameservers to use Cloudflare
+Once domain is active, go to the Zero Trust Dashboard &gt; Access &gt; Tunnels
+Click Create a Tunnel
+
+Name: homeassistant
+Choose Create Tunnel Token
+
+
+Select Public Hostname
+
+Hostname: ha.your-custom-domain.com
+Service: http://&lt;your-local-device-ip-address&gt;:8123
+
+
+After creating the tunnel, you’ll get a tunnel token.
+
+
+🚀 Step 2: Install and Configure the Cloudflared Add-on
+
+Go to Settings &gt; Add-ons &gt; Add-on Store
+Search for Cloudflared and install the official version
+Click Configuration, and enter the following:
+
+external_hostname: ha.your-custom-domain.com.com
+additional_hosts: []
+tunnel_name: homeassistant
+tunnel_token: &gt;-
+  &lt;your-token&gt;
+nginx_proxy_manager: false
+
+Click Save, then Start the add-on
+
+
+🧠 Note: Do not manually manage a config file or credentials if you&rsquo;re using this token method—it’s handled for you.">
+    <meta name="generator" content="Hugo 0.145.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/blog/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://ztoliver.github.io/blog/posts/cloudflare-tunnel-home-assistant/">
+    
+
+    <meta property="og:url" content="https://ztoliver.github.io/blog/posts/cloudflare-tunnel-home-assistant/">
+  <meta property="og:site_name" content="My Blog">
+  <meta property="og:title" content="External access for Home Assistant using Cloudflare Tunnels">
+  <meta property="og:description" content="🌐 Set Up External Access for Home Assistant Using the Cloudflare Tunnel Add-on This guide walks you through exposing your Home Assistant instance securely over the internet using Cloudflare Tunnel and the Cloudflared add-on with a token-based config.
+🧱 Requirements Home Assistant OS (e.g. on Raspberry Pi) running on port 8123. Domain name (e.g. your-custom-domain.com) Cloudflare account managing the domain Cloudflared Home Assistant add-on installed 🔐 Step 1: Set Up Domain in Cloudflare Log into https://dash.cloudflare.com Add your domain if not already added (e.g. your-custom-domain.com) Follow prompts to update your domain’s nameservers to use Cloudflare Once domain is active, go to the Zero Trust Dashboard &gt; Access &gt; Tunnels Click Create a Tunnel Name: homeassistant Choose Create Tunnel Token Select Public Hostname Hostname: ha.your-custom-domain.com Service: http://&lt;your-local-device-ip-address&gt;:8123 After creating the tunnel, you’ll get a tunnel token. 🚀 Step 2: Install and Configure the Cloudflared Add-on Go to Settings &gt; Add-ons &gt; Add-on Store Search for Cloudflared and install the official version Click Configuration, and enter the following: external_hostname: ha.your-custom-domain.com.com additional_hosts: [] tunnel_name: homeassistant tunnel_token: &gt;- &lt;your-token&gt; nginx_proxy_manager: false Click Save, then Start the add-on 🧠 Note: Do not manually manage a config file or credentials if you’re using this token method—it’s handled for you.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-26T14:21:35-05:00">
+    <meta property="article:modified_time" content="2025-03-26T14:21:35-05:00">
+
+  <meta itemprop="name" content="External access for Home Assistant using Cloudflare Tunnels">
+  <meta itemprop="description" content="🌐 Set Up External Access for Home Assistant Using the Cloudflare Tunnel Add-on This guide walks you through exposing your Home Assistant instance securely over the internet using Cloudflare Tunnel and the Cloudflared add-on with a token-based config.
+🧱 Requirements Home Assistant OS (e.g. on Raspberry Pi) running on port 8123. Domain name (e.g. your-custom-domain.com) Cloudflare account managing the domain Cloudflared Home Assistant add-on installed 🔐 Step 1: Set Up Domain in Cloudflare Log into https://dash.cloudflare.com Add your domain if not already added (e.g. your-custom-domain.com) Follow prompts to update your domain’s nameservers to use Cloudflare Once domain is active, go to the Zero Trust Dashboard &gt; Access &gt; Tunnels Click Create a Tunnel Name: homeassistant Choose Create Tunnel Token Select Public Hostname Hostname: ha.your-custom-domain.com Service: http://&lt;your-local-device-ip-address&gt;:8123 After creating the tunnel, you’ll get a tunnel token. 🚀 Step 2: Install and Configure the Cloudflared Add-on Go to Settings &gt; Add-ons &gt; Add-on Store Search for Cloudflared and install the official version Click Configuration, and enter the following: external_hostname: ha.your-custom-domain.com.com additional_hosts: [] tunnel_name: homeassistant tunnel_token: &gt;- &lt;your-token&gt; nginx_proxy_manager: false Click Save, then Start the add-on 🧠 Note: Do not manually manage a config file or credentials if you’re using this token method—it’s handled for you.">
+  <meta itemprop="datePublished" content="2025-03-26T14:21:35-05:00">
+  <meta itemprop="dateModified" content="2025-03-26T14:21:35-05:00">
+  <meta itemprop="wordCount" content="360">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="External access for Home Assistant using Cloudflare Tunnels">
+  <meta name="twitter:description" content="🌐 Set Up External Access for Home Assistant Using the Cloudflare Tunnel Add-on This guide walks you through exposing your Home Assistant instance securely over the internet using Cloudflare Tunnel and the Cloudflared add-on with a token-based config.
+🧱 Requirements Home Assistant OS (e.g. on Raspberry Pi) running on port 8123. Domain name (e.g. your-custom-domain.com) Cloudflare account managing the domain Cloudflared Home Assistant add-on installed 🔐 Step 1: Set Up Domain in Cloudflare Log into https://dash.cloudflare.com Add your domain if not already added (e.g. your-custom-domain.com) Follow prompts to update your domain’s nameservers to use Cloudflare Once domain is active, go to the Zero Trust Dashboard &gt; Access &gt; Tunnels Click Create a Tunnel Name: homeassistant Choose Create Tunnel Token Select Public Hostname Hostname: ha.your-custom-domain.com Service: http://&lt;your-local-device-ip-address&gt;:8123 After creating the tunnel, you’ll get a tunnel token. 🚀 Step 2: Install and Configure the Cloudflared Add-on Go to Settings &gt; Add-ons &gt; Add-on Store Search for Cloudflared and install the official version Click Configuration, and enter the following: external_hostname: ha.your-custom-domain.com.com additional_hosts: [] tunnel_name: homeassistant tunnel_token: &gt;- &lt;your-token&gt; nginx_proxy_manager: false Click Save, then Start the add-on 🧠 Note: Do not manually manage a config file or credentials if you’re using this token method—it’s handled for you.">
+
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">External access for Home Assistant using Cloudflare Tunnels</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-03-26T14:21:35-05:00">March 26, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="-set-up-external-access-for-home-assistant-using-the-cloudflare-tunnel-add-on">🌐 Set Up External Access for Home Assistant Using the Cloudflare Tunnel Add-on</h1>
+<p>This guide walks you through exposing your Home Assistant instance securely over the internet using <strong>Cloudflare Tunnel</strong> and the <strong>Cloudflared add-on</strong> with a <strong>token-based config</strong>.</p>
+<hr>
+<h2 id="-requirements">🧱 Requirements</h2>
+<ul>
+<li>Home Assistant OS (e.g. on Raspberry Pi) running on port 8123.</li>
+<li>Domain name (e.g. <code>your-custom-domain.com</code>)</li>
+<li>Cloudflare account managing the domain</li>
+<li>Cloudflared Home Assistant add-on installed</li>
+</ul>
+<hr>
+<h2 id="-step-1-set-up-domain-in-cloudflare">🔐 Step 1: Set Up Domain in Cloudflare</h2>
+<ol>
+<li>Log into <a href="https://dash.cloudflare.com">https://dash.cloudflare.com</a></li>
+<li>Add your domain if not already added (e.g. <code>your-custom-domain.com</code>)</li>
+<li>Follow prompts to update your domain’s <strong>nameservers</strong> to use Cloudflare</li>
+<li>Once domain is active, go to the <strong>Zero Trust Dashboard</strong> &gt; <strong>Access</strong> &gt; <strong>Tunnels</strong></li>
+<li>Click <strong>Create a Tunnel</strong>
+<ul>
+<li>Name: <code>homeassistant</code></li>
+<li>Choose <strong>Create Tunnel Token</strong></li>
+</ul>
+</li>
+<li>Select <strong>Public Hostname</strong>
+<ul>
+<li>Hostname: <code>ha.your-custom-domain.com</code></li>
+<li>Service: <code>http://&lt;your-local-device-ip-address&gt;:8123</code></li>
+</ul>
+</li>
+<li>After creating the tunnel, you’ll get a <strong>tunnel token</strong>.</li>
+</ol>
+<hr>
+<h2 id="-step-2-install-and-configure-the-cloudflared-add-on">🚀 Step 2: Install and Configure the Cloudflared Add-on</h2>
+<ol>
+<li>Go to <strong>Settings &gt; Add-ons &gt; Add-on Store</strong></li>
+<li>Search for <strong>Cloudflared</strong> and install the official version</li>
+<li>Click <strong>Configuration</strong>, and enter the following:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">external_hostname</span>: <span style="color:#ae81ff">ha.your-custom-domain.com.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">additional_hosts</span>: []
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tunnel_name</span>: <span style="color:#ae81ff">homeassistant</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tunnel_token</span>: &gt;-<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &lt;your-token&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">nginx_proxy_manager</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><ol start="4">
+<li>Click <strong>Save</strong>, then <strong>Start</strong> the add-on</li>
+</ol>
+<blockquote>
+<p>🧠 <em>Note: Do not manually manage a config file or credentials if you&rsquo;re using this token method—it’s handled for you.</em></p></blockquote>
+<hr>
+<h2 id="-step-3-fix-400-bad-request-in-home-assistant">⚠️ Step 3: Fix “400: Bad Request” in Home Assistant</h2>
+<p>Home Assistant will reject Cloudflare traffic by default unless you tell it to trust proxy headers.</p>
+<p>In <code>configuration.yaml</code>, add:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">http</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">use_x_forwarded_for</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">trusted_proxies</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">127.0.0.1</span>
+</span></span><span style="display:flex;"><span>    - ::<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">172.30.33.0</span><span style="color:#ae81ff">/24 </span> <span style="color:#75715e"># Docker subnet (used by Cloudflared add-on)</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">192.168.1.0/24  # Optional</span>: <span style="color:#ae81ff">your local LAN</span>
+</span></span></code></pre></div><p>Save the file.</p>
+<hr>
+<h2 id="-step-4-restart-home-assistant">🔀 Step 4: Restart Home Assistant</h2>
+<ul>
+<li>Go to <strong>Settings &gt; System &gt; Restart</strong></li>
+<li>Wait for full reload</li>
+</ul>
+<hr>
+<h2 id="-step-5-test-it">✅ Step 5: Test It</h2>
+<p>Visit:</p>
+<pre tabindex="0"><code>https://ha.your-custom-domain.com
+</code></pre><p>You should see the Home Assistant login screen—fully secure and tunneled through Cloudflare.</p>
+<hr>
+<h2 id="-optional-secure-with-cloudflare-access">🧐 Optional: Secure with Cloudflare Access</h2>
+<ul>
+<li>Go to <strong>Zero Trust Dashboard &gt; Access &gt; Applications</strong></li>
+<li>Add an access rule for <code>ha.your-custom-domain.com</code> (e.g., email login, OTP, etc.)</li>
+</ul>
+<hr>
+<h2 id="-troubleshooting">👍 Troubleshooting</h2>
+<ul>
+<li><strong>400: Bad Request</strong> → <code>trusted_proxies</code> is missing or misconfigured</li>
+<li><strong>Tunnel won’t connect</strong> → Check logs in the Cloudflared add-on</li>
+<li><strong>DNS not resolving</strong> → Ensure <code>ha</code> is created in Cloudflare DNS as a CNAME to the tunnel</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ztoliver.github.io/blog/" >
+    &copy;  My Blog 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
